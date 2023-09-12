@@ -23,3 +23,8 @@ D. npm install dotenv
 This file specifies intentionally untracked files that Git should ignore. it will prevent uploading the node-module and env file to the github. 
 ~ Include the .env file and the node_modules in the gitignore
 
+Step 3 – Create a route
+
+app.get('/api', (req, res) => {
+    res.status(200).json({message: "Get Name"}) 
+})
