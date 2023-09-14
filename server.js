@@ -1,19 +1,37 @@
 import express from "express";
-// import dotenv from "dotenv";
+import dotenv from "dotenv";
 import { router as userRouter } from "./routes/userRoute.js"
 import mongoose from "mongoose";
-import './db/connect.js';
+
 const port = process.env.PORT || 5000
 
 const app = express()
 
-app.use('/api', (userRouter)) 
+dotenv.config()
 
-// mongodb connection
-mongoose
-  .connect(process.env.MONGO)
-  .then(() => console.log("Database Connection Established"))
-  .catch((e) => console.log(e.message));
-console.log('Mongodb connected')
+const connect = async () => {
+try {
+    await mongoose.connect(process.env.MONGO);
+    console.log("connected to MongoDB")
+} catch (error) {
+    throw error;
+}
+};
+// test to see if app is connected to db by addind or delecting ip address
+mongoose.connection.on("disconnected", ()=> {
+    console.log("mongoDb Disconnected!")
+})
 
-app.listen(port, () => console.log(`Server Running on port ${port}`))
+mongoose.connection.on('connected', ()=>{
+console.log("mongoDb Connected!")
+})
+
+app.use(express.json()); 
+app.use('/api', (userRouter)) ;
+
+
+
+app.listen(port, () =>{
+    connect();
+    console.log(`Server Running on port ${port}`)
+})
