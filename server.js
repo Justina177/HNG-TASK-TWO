@@ -12,6 +12,5 @@ const app = express()
 app.use(express.json()); 
 app.use('/api', (router)) ;
 
-app.listen(port, () =>{
-    console.log(`Server Running on port ${port}`)
+app.listen(port, () =>{console.log(`Server Running on port ${port}`)
 })
