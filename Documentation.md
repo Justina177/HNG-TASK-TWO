@@ -11,6 +11,10 @@ The server should be running on http://localhost:5000.
 
 # API Endpoints
 
+## the hosted endpoint is 
+https://hng-task-2-rycz.onrender.com/api
+
+
 # Create a User
 * Endpoint: POST /api
 * Request Body:
