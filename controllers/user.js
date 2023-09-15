@@ -64,7 +64,8 @@ const deleteUser = async (req, res) => {
 
     await user.deleteOne()
 
-    res.status(200).json({ id: req.params.id })
+    res.status(200).json({ message: 'User was successfully deleted', user })
+
 }
     
 
