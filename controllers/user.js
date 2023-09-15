@@ -8,7 +8,7 @@ const getUser = async (req, res) => {
             res.status(404).json({ message: "the user does not exist" })
         }
         else {
-            res.status(200).json(users);
+            res.status(200).json({ message: 'User fetched successfully ',users });
         }
     } catch (err) {
         console.log(err.mesage)
@@ -24,7 +24,7 @@ const createUser = async(req, res) => {
     }
     try{
         const newUser = await User.create({name})
-        res.status(201).json(newUser) 
+        res.status(201).json({ message: 'User was created successfully',newUser }) 
         console.log(newUser)
         
     } catch (err) {
@@ -50,7 +50,7 @@ const updateUser = async (req, res) => {
         new: true
     })
 
-    res.status(200).json(updatedUser)
+    res.status(200).json({ message: 'User was successfully updated', updatedUser })
 }
           
             
